@@ -179,6 +179,7 @@ export function getIconFromPage(page: string): JSX.Element {
 
     case 'stt_backend':              return <PencilSquareIcon className="h-5 w-5 flex-none text-gray-800" aria-hidden="true" />;
     case 'stt_wake_word':            return <MoonIcon className="h-5 w-5 flex-none text-gray-800" aria-hidden="true" />;
+    case 'stt_language_settings':    return <LanguageIcon className="h-5 w-5 flex-none text-gray-800" aria-hidden="true" />;
     case 'whisper_openai_settings':  return <AdjustmentsHorizontalIcon className="h-5 w-5 flex-none text-gray-800" aria-hidden="true" />;
     case 'whispercpp_settings':      return <AdjustmentsHorizontalIcon className="h-5 w-5 flex-none text-gray-800" aria-hidden="true" />;
 
@@ -242,6 +243,7 @@ function getLabelFromPage(page: string): string {
 
     case 'stt_backend':             return t('STT Backend');
     case 'stt_wake_word':           return t("Wake word");
+    case 'stt_language_settings':   return t("STT_Language_Settings");
     case 'whisper_openai_settings': return t("Whisper (OpenAI)");
     case 'whispercpp_settings':     return t("Whisper.cpp");
   }

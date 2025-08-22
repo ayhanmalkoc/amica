@@ -192,5 +192,21 @@
   "View AllTalk Documentation": "AllTalk Belgelerini Görüntüle",
   "Successfully saved!": "Başarıyla kaydedildi!",
   "Your settings were updated successfully.": "Ayarlarınız başarıyla güncellendi.",
-  "STOP SEQUENCE": "DURDURMA SEKRANSI"
+  "STOP SEQUENCE": "DURDURMA SEKRANSI",
+  "STT_Language_Settings": "STT Dil Ayarları",
+  "STT_Language_Settings_desc": "Konuşmadan metne dil algılama davranışını yapılandırın. Otomatik algılama veya manuel dil seçimi arasında seçim yapın.",
+  "STT_Auto_Detection": "Otomatik Algılama",
+  "STT_Auto_Detection_enabled": "Etkin - Konuşulan dili otomatik algıla",
+  "STT_Auto_Detection_disabled": "Devre Dışı - Manuel dil seçimi kullan",
+  "STT_Auto_Detection_desc": "Etkinleştirildiğinde, OpenAI Whisper konuşulan dili otomatik olarak algılar. Bu çok dilli ortamlar için iyi çalışır.",
+  "STT_Manual_Language": "Manuel Dil Seçimi",
+  "STT_Manual_Language_desc": "Konuşma tanıma için {{language}} kullanılıyor",
+  "STT_Manual_Language_auto_desc": "Otomatik algılama etkinken manuel dil seçimi devre dışıdır",
+  "STT_Current_Status": "Mevcut Durum",
+  "STT_Status_auto": "Otomatik algılama modu aktif",
+  "STT_Status_manual": "{{language}} kullanılarak manuel mod",
+  "STT_Help_title": "STT Dil Sistemi Nasıl Çalışır",
+  "STT_Help_auto": "Otomatik algılama: Whisper sesi analiz eder ve dili otomatik belirler",
+  "STT_Help_manual": "Manuel seçim: Whisper'ı daha iyi doğruluk için belirli bir dil kullanmaya zorlar",
+  "STT_Help_performance": "Manuel seçim, tutarlı tek dil kullanımı için doğruluğu artırabilir"
 }

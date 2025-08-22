@@ -180,5 +180,21 @@
   "View AllTalk Documentation": "View AllTalk Documentation",
   "Successfully saved!": "Successfully saved!",
   "Your settings were updated successfully.": "Your settings were updated successfully.",
-  "STOP SEQUENCE": " STOP SEQUENCE"
+  "STOP SEQUENCE": " STOP SEQUENCE",
+  "STT_Language_Settings": "STT Language Settings",
+  "STT_Language_Settings_desc": "Configure speech-to-text language detection behavior. Choose between automatic detection or manual language selection.",
+  "STT_Auto_Detection": "Auto-Detection",
+  "STT_Auto_Detection_enabled": "Enabled - Automatically detect spoken language",
+  "STT_Auto_Detection_disabled": "Disabled - Use manual language selection",
+  "STT_Auto_Detection_desc": "When enabled, OpenAI Whisper will automatically detect the language being spoken. This works well for multilingual environments.",
+  "STT_Manual_Language": "Manual Language Selection", 
+  "STT_Manual_Language_desc": "Using {{language}} for speech recognition",
+  "STT_Manual_Language_auto_desc": "Manual language selection is disabled when auto-detection is enabled",
+  "STT_Current_Status": "Current Status",
+  "STT_Status_auto": "Auto-detection mode is active",
+  "STT_Status_manual": "Manual mode using {{language}}",
+  "STT_Help_title": "How STT Language Works",
+  "STT_Help_auto": "Auto-detection: Whisper analyzes audio and determines language automatically",
+  "STT_Help_manual": "Manual selection: Forces Whisper to use a specific language for better accuracy",
+  "STT_Help_performance": "Manual selection can improve accuracy for consistent single-language usage"
 }
