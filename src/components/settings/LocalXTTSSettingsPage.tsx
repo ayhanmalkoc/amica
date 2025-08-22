@@ -24,8 +24,8 @@ export function LocalXTTSSettingsPage({
     const [selectedVoice, setSelectedVoice] = useState(config("alltalk_voice") || '');
     const [language, setLanguage] = useState(config("alltalk_language") || 'en');
     const [serverStatus, setServerStatus] = useState('unchecked');
-    const [rvcVoices, setRvcVoices] = useState<string[]>(['Disabled']);
-    const [selectedRvcVoice, setSelectedRvcVoice] = useState(config("alltalk_rvc_voice") || 'Disabled');
+    const [rvcVoices, setRvcVoices] = useState<string[]>([t('Disabled')]);
+    const [selectedRvcVoice, setSelectedRvcVoice] = useState(config("alltalk_rvc_voice") || t('Disabled'));
     const [rvcPitch, setRvcPitch] = useState(config("alltalk_rvc_pitch") || '0');
 
     const languages = {
@@ -85,7 +85,7 @@ export function LocalXTTSSettingsPage({
             }
         } catch (err) {
             console.error('Error fetching voices:', err);
-            setError('Failed to fetch voices');
+            setError(t('Failed to fetch voices'));
         } finally {
             setLoading(false);
         }
@@ -123,7 +123,7 @@ export function LocalXTTSSettingsPage({
 
                 // Load RVC voices if using V2 and voices not loaded
                 if (config("alltalk_version") === "v2" && 
-                    (rvcVoices.length <= 1 || !rvcVoices.includes(config("alltalk_rvc_voice") || 'Disabled'))) {
+                    (rvcVoices.length <= 1 || !rvcVoices.includes(config("alltalk_rvc_voice") || t('Disabled')))) {
                     console.log('[AllTalk] Fetching RVC voices');
                     await fetchRvcVoices();
                 }
@@ -140,7 +140,7 @@ export function LocalXTTSSettingsPage({
                 }
             } catch (err) {
                 console.error('[AllTalk] Error loading data:', err);
-                setError('Failed to load voice data');
+                setError(t('Failed to load voice data'));
             } finally {
                 setLoading(false);
             }
@@ -180,7 +180,7 @@ export function LocalXTTSSettingsPage({
 			await audio.play();
 		} catch (err) {
 			console.error('Preview error:', err);
-			setError('Failed to preview voice');
+			setError(t('Failed to preview voice'));
 		} finally {
 			setLoading(false);
 		}

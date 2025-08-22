@@ -16,6 +16,7 @@ import {
 
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
+import { useTranslation } from 'react-i18next';
 import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import { TextButton } from "@/components/textButton";
 import { ViewerContext } from "@/features/vrmViewer/viewerContext";
@@ -80,6 +81,7 @@ export const Settings = ({
 }: {
   onClickClose: () => void;
 }) => {
+  const { t } = useTranslation();
   const { viewer } = useContext(ViewerContext);
   const { vrmList, vrmListAddFile } = useVrmStoreContext();
   useKeyboardShortcut("Escape", onClickClose);
@@ -874,8 +876,8 @@ export const Settings = ({
                     <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium text-gray-900">Successfully saved!</p>
-                    <p className="mt-1 text-sm text-gray-500">Your settings were updated successfully.</p>
+                    <p className="text-sm font-medium text-gray-900">{t("Successfully saved!")}</p>
+                    <p className="mt-1 text-sm text-gray-500">{t("Your settings were updated successfully.")}</p>
                   </div>
                   <div className="ml-4 flex flex-shrink-0">
                     <button
