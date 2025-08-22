@@ -24,7 +24,7 @@ export function VisionOpenAISettingsPage({
 }) {
   const { t } = useTranslation();
 
-  const description = <>Configure OpenAI vision settings. You can get an API key from <a href="https://platform.openai.com">platform.openai.com</a>. You can generally use other OpenAI compatible URLs and models here too, provided they have vision support, such as <a href="https://openrouter.ai/">OpenRouter</a> or <a href="https://lmstudio.ai/">LM Studio</a>.</>;
+  const description = <div dangerouslySetInnerHTML={{ __html: t("VisionOpenAISettings_desc") }} />;
 
   return (
     <BasicPage

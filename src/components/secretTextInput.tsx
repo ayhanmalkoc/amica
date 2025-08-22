@@ -2,6 +2,7 @@ import { KnownIconType } from "@charcoal-ui/icons";
 import { useState, ButtonHTMLAttributes } from "react";
 import { Switch } from '@headlessui/react';
 import { clsx } from "clsx";
+import { useTranslation } from "react-i18next";
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,6 +13,7 @@ export const SecretTextInput = ({
   onChange,
   ...rest
 }: Props) => {
+  const { t } = useTranslation();
   const [inputType, setInputType] = useState("password");
   const [enabled, setEnabled] = useState(false)
 
@@ -38,7 +40,7 @@ export const SecretTextInput = ({
           'relative ml-2 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
         )}
       >
-        <span className="sr-only">Use setting</span>
+        <span className="sr-only">{t("Use setting")}</span>
         <span
           className={clsx(
             enabled ? 'translate-x-5' : 'translate-x-0',
@@ -76,7 +78,7 @@ export const SecretTextInput = ({
         </span>
       </Switch>
       <Switch.Label as="span" className="ml-3 text-sm">
-        <span className="font-medium text-gray-900 whitespace-nowrap">Show Key</span>
+        <span className="font-medium text-gray-900 whitespace-nowrap">{t("Show Key")}</span>
       </Switch.Label>
     </Switch.Group>
   );

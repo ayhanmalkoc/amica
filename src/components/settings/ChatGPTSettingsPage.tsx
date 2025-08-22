@@ -2,6 +2,7 @@ import { BasicPage, FormRow, NotUsingAlert } from './common';
 import { TextInput } from '@/components/textInput';
 import { SecretTextInput } from '@/components/secretTextInput';
 import { config, updateConfig } from "@/utils/config";
+import { useTranslation } from 'react-i18next';
 
 
 export function ChatGPTSettingsPage({
@@ -21,21 +22,21 @@ export function ChatGPTSettingsPage({
   setOpenAIModel: (model: string) => void;
   setSettingsUpdated: (updated: boolean) => void;
 }) {
-  const description = <>Configure ChatGPT settings. You can get an API key from <a href="https://platform.openai.com">platform.openai.com</a>. You can generally use other OpenAI compatible URLs and models here too, such as <a href="https://openrouter.ai/">OpenRouter</a> or <a href="https://lmstudio.ai/">LM Studio</a>.</>;
+  const { t } = useTranslation();
 
   return (
     <BasicPage
-      title="ChatGPT Settings"
-      description={description}
+      title={t("ChatGPT Settings")}
+      description={t('ChatGPTSettings_desc', 'Configure ChatGPT settings. You can get an API key from platform.openai.com. You can generally use other OpenAI compatible URLs and models here too, such as OpenRouter or LM Studio.')}
     >
       { config("chatbot_backend") !== "chatgpt" && (
         <NotUsingAlert>
-          You are not currently using ChatGPT as your ChatBot backend. These settings will not be used.
+          {t("not_using_alert", "You are not currently using {{name}} as your {{what}} backend. These settings will not be used.", {name: "ChatGPT", what: t("ChatBot")})}
         </NotUsingAlert>
       ) }
       <ul role="list" className="divide-y divide-gray-100 max-w-xs">
         <li className="py-4">
-          <FormRow label="OpenAI API Key">
+          <FormRow label={t("OpenAI API Key")}>
             <SecretTextInput
               value={openAIApiKey}
               onChange={(event: React.ChangeEvent<any>) => {
@@ -47,7 +48,7 @@ export function ChatGPTSettingsPage({
           </FormRow>
         </li>
         <li className="py-4">
-          <FormRow label="OpenAI URL">
+          <FormRow label={t("OpenAI URL")}>
             <TextInput
               value={openAIUrl}
               onChange={(event: React.ChangeEvent<any>) => {
@@ -59,7 +60,7 @@ export function ChatGPTSettingsPage({
           </FormRow>
         </li>
         <li className="py-4">
-          <FormRow label="OpenAI Model">
+          <FormRow label={t("OpenAI Model")}>
             <TextInput
               value={openAIModel}
               onChange={(event: React.ChangeEvent<any>) => {

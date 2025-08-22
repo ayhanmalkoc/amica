@@ -52,7 +52,7 @@ export function BackgroundVideoPage({
 
             { videoChanged && (
               <p className="text-xs text-gray-500 mt-4">
-                Video changed. <span className="text-cyan-500 hover:text-cyan-600 hover:cursor-pointer" onClick={() => window.location.reload()}>Refresh</span> to apply.
+                {t("Video changed")}. <span className="text-cyan-500 hover:text-cyan-600 hover:cursor-pointer" onClick={() => window.location.reload()}>{t("Refresh")}</span> {t("to apply")}.
               </p>
             )}
            </FormRow>

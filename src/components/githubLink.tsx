@@ -1,6 +1,8 @@
 import { buildUrl } from "@/utils/buildUrl";
+import { useTranslation } from "react-i18next";
 
 export const GitHubLink = () => {
+  const { t } = useTranslation();
   return (
     <a
       draggable={false}
@@ -15,7 +17,7 @@ export const GitHubLink = () => {
           width={24}
           src={buildUrl("/github-mark-white.svg")}
         ></img>
-        <div className="mx-2 text-white font-bold">Open Source</div>
+        <div className="mx-2 text-white font-bold">{t("Open Source")}</div>
       </div>
     </a>
   );

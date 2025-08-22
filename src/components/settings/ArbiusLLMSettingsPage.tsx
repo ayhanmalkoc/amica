@@ -24,12 +24,12 @@ export function ArbiusLLMSettingsPage({
     >
       { config("chatbot_backend") !== "arbius_llm" && (
         <NotUsingAlert>
-          You are not currently using Arbius as your ChatBot backend. These settings will not be used.
+          {t("not_using_alert", "You are not currently using {{name}} as your {{what}} backend. These settings will not be used.", {name: "Arbius", what: t("ChatBot")})}
         </NotUsingAlert>
       ) }
       <ul role="list" className="divide-y divide-gray-100 max-w-xs">
         <li className="py-4">
-          <FormRow label="Arbius Model">
+          <FormRow label={t("Arbius Model")}>
             <TextInput
               value={arbiusLLMModelId}
               onChange={(event: React.ChangeEvent<any>) => {
