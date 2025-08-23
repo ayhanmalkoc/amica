@@ -10,7 +10,7 @@ export function ResetSettingsPage() {
   return (
     <BasicPage
       title={t("Reset Settings")}
-      description="Reset all settings to default. This will reload the page. You will lose any unsaved changes."
+      description={t("resetSettings_desc", "Reset all settings to default. This will reload the page. You will lose any unsaved changes.")}
     >
       <ul role="list" className="divide-y divide-gray-100 max-w-xs">
         <li className="py-4">

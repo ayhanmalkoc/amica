@@ -30,14 +30,26 @@ export async function getOpenRouterChatResponseStream(messages: Message[]): Prom
     })
   });
 
-  const reader = response.body?.getReader();
-  if (!response.ok || !reader) {
-    const error = await response.json();
-    // Handle OpenRouter-specific error format
-    if (error.error?.message) {
-      throw new Error(`OpenRouter error: ${error.error.message}`);
+  if (!response.ok) {
+    console.error('OpenRouter Response Status:', response.status, response.statusText);
+    let errorMessage = `OpenRouter request failed with status ${response.status}: ${response.statusText}`;
+    try {
+      const error = await response.json();
+      console.error('OpenRouter Error Details:', error);
+      // Handle OpenRouter-specific error format
+      if (error.error?.message) {
+        errorMessage = `OpenRouter error: ${error.error.message}`;
+      }
+    } catch (e) {
+      console.error('Failed to parse error response:', e);
+      // If response.json() fails, use the default error message
     }
-    throw new Error(`OpenRouter request failed with status ${response.status}`);
+    throw new Error(errorMessage);
+  }
+
+  const reader = response.body?.getReader();
+  if (!reader) {
+    throw new Error(`OpenRouter request failed: no response body`);
   }
 
   const stream = new ReadableStream({

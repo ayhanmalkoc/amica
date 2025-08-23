@@ -42,5 +42,7 @@ working/*
 # Sentry Config File
 .env.sentry-build-plugin
 
+
 # External API configuration with sensitive data
 src/features/externalAPI/dataHandlerStorage/config.json
+

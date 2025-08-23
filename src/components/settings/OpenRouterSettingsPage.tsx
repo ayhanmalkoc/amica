@@ -2,6 +2,7 @@ import { BasicPage, FormRow, NotUsingAlert } from './common';
 import { TextInput } from '@/components/textInput';
 import { SecretTextInput } from '@/components/secretTextInput';
 import { config, updateConfig } from "@/utils/config";
+import { useTranslation } from 'react-i18next';
 
 
 export function OpenRouterSettings({
@@ -21,21 +22,21 @@ export function OpenRouterSettings({
   setOpenRouterModel: (model: string) => void;
   setSettingsUpdated: (updated: boolean) => void;
 }) {
-  const description = <>Configure OpenRouter settings. You can get an API key from <a href="https://openrouter.ai">https://openrouter.ai</a></>;
+  const { t } = useTranslation();
 
   return (
     <BasicPage
-      title="OpenRouter Settings"
-      description={description}
+      title={t("OpenRouter Settings")}
+      description={t('OpenRouterSettings_desc', 'Configure OpenRouter settings. You can get an API key from https://openrouter.ai')}
     >
       { config("chatbot_backend") !== "openrouter" && (
         <NotUsingAlert>
-          You are not currently using OpenRouter as your ChatBot backend. These settings will not be used.
+          {t("not_using_alert", "You are not currently using {{name}} as your {{what}} backend. These settings will not be used.", {name: "OpenRouter", what: t("ChatBot")})}
         </NotUsingAlert>
       ) }
       <ul role="list" className="divide-y divide-gray-100 max-w-xs">
         <li className="py-4">
-          <FormRow label="OpenRouter API Key">
+          <FormRow label={t("OpenRouter API Key")}>
             <SecretTextInput
               value={openRouterApiKey}
               onChange={(event: React.ChangeEvent<any>) => {
@@ -47,7 +48,7 @@ export function OpenRouterSettings({
           </FormRow>
         </li>
         <li className="py-4">
-          <FormRow label="OpenRouter URL">
+          <FormRow label={t("OpenRouter URL")}>
             <TextInput
               value={openRouterUrl}
               onChange={(event: React.ChangeEvent<any>) => {
@@ -59,7 +60,7 @@ export function OpenRouterSettings({
           </FormRow>
         </li>
         <li className="py-4">
-          <FormRow label="OpenRouter Model">
+          <FormRow label={t("OpenRouter Model")}>
             <TextInput
               value={openRouterModel}
               onChange={(event: React.ChangeEvent<any>) => {

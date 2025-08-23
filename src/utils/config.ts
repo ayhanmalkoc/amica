@@ -60,6 +60,8 @@ export const defaults = {
   openai_whisper_apikey: process.env.NEXT_PUBLIC_OPENAI_WHISPER_APIKEY ?? '',
   openai_whisper_url: process.env.NEXT_PUBLIC_OPENAI_WHISPER_URL ?? 'https://api.openai.com',
   openai_whisper_model: process.env.NEXT_PUBLIC_OPENAI_WHISPER_MODEL ?? 'whisper-1',
+  stt_language_auto: process.env.NEXT_PUBLIC_STT_LANGUAGE_AUTO ?? 'true',
+  stt_language_manual: process.env.NEXT_PUBLIC_STT_LANGUAGE_MANUAL ?? 'tr',
   openai_tts_apikey: process.env.NEXT_PUBLIC_OPENAI_TTS_APIKEY ?? '',
   openai_tts_url: process.env.NEXT_PUBLIC_OPENAI_TTS_URL ?? 'https://api.openai.com',
   openai_tts_model: process.env.NEXT_PUBLIC_OPENAI_TTS_MODEL ?? 'tts-1',

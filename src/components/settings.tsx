@@ -74,6 +74,7 @@ import { useVrmStoreContext } from "@/features/vrmStore/vrmStoreContext";
 import { OpenRouterSettings } from "./settings/OpenRouterSettingsPage";
 import { ExternalAPIPage } from "./settings/ExternalAPIPage";
 import { KokoroSettingsPage } from "./settings/KokoroSettingsPage";
+import STTLanguageSettingsPage from "./settings/STTLanguageSettingsPage";
 
 
 export const Settings = ({
@@ -162,6 +163,9 @@ export const Settings = ({
   const [sttBackend, setSTTBackend] = useState(config("stt_backend"));
   const [sttWakeWordEnabled, setSTTWakeWordEnabled] = useState<boolean>(config("wake_word_enabled") === 'true' ? true : false);
   const [sttWakeWord, setSTTWakeWord] = useState(config("wake_word"));
+  
+  const [sttLanguageAuto, setSTTLanguageAuto] = useState<boolean>(config("stt_language_auto") === 'true' ? true : false);
+  const [sttLanguageManual, setSTTLanguageManual] = useState(config("stt_language_manual"));
   
   const [whisperOpenAIUrl, setWhisperOpenAIUrl] = useState(config("openai_whisper_url"));
   const [whisperOpenAIApiKey, setWhisperOpenAIApiKey] = useState(config("openai_whisper_apikey"));
@@ -299,6 +303,8 @@ export const Settings = ({
     bgColor,
     bgUrl, vrmHash, vrmUrl, youtubeVideoID, animationUrl, animationProcedural,
     sttBackend,
+    sttWakeWordEnabled, sttWakeWord,
+    sttLanguageAuto, sttLanguageManual,
     whisperOpenAIApiKey, whisperOpenAIModel, whisperOpenAIUrl,
     whisperCppUrl,
     amicaLifeEnabled ,timeBeforeIdle, minTimeInterval, maxTimeInterval, timeToSleep, idleTextPrompt,
@@ -380,7 +386,7 @@ export const Settings = ({
 
     case 'stt':
       return <MenuPage
-        keys={["stt_backend", "stt_wake_word", "whisper_openai_settings", "whispercpp_settings"]}
+        keys={["stt_backend", "stt_wake_word", "stt_language_settings", "whisper_openai_settings", "whispercpp_settings"]}
         menuClick={handleMenuClick} />;
 
     case 'vision':
@@ -644,6 +650,15 @@ export const Settings = ({
         setSTTWakeWordEnabled={setSTTWakeWordEnabled}
         setSTTWakeWord={setSTTWakeWord}
         setTimeBeforeIdle={setTimeBeforeIdle}
+        setSettingsUpdated={setSettingsUpdated}
+        />
+
+    case 'stt_language_settings':
+      return <STTLanguageSettingsPage
+        sttLanguageAuto={sttLanguageAuto}
+        setSTTLanguageAuto={setSTTLanguageAuto}
+        sttLanguageManual={sttLanguageManual}
+        setSTTLanguageManual={setSTTLanguageManual}
         setSettingsUpdated={setSettingsUpdated}
         />
 

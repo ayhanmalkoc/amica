@@ -1,6 +1,7 @@
 import { useState , useEffect } from "react";
 import { Switch } from '@headlessui/react'
 import { clsx } from "clsx";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   value: boolean;
@@ -16,6 +17,7 @@ export const SwitchBox = ({
   disabled = false, // Default to not disabled
   ...rest
 }: Props) => {
+  const { t } = useTranslation();
   const [enabled, setEnabled] = useState(value);
 
   // Synchronize enabled state with the incoming value prop
@@ -41,7 +43,7 @@ export const SwitchBox = ({
         disabled={disabled} // Set the disabled prop on Switch
         {...rest}
       >
-        <span className="sr-only">Use setting</span>
+        <span className="sr-only">{t("Use setting")}</span>
         <span
           className={clsx(
             enabled ? 'translate-x-5' : 'translate-x-0',
