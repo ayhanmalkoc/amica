@@ -6,6 +6,8 @@
 
 * [How Amica Works](./overview/how-amica-works.md)
 * [Core Features](./overview/core-features.md)
+* [Development Roadmap](./overview/roadmap.md)
+* [Geliştirme Yol Haritası (TR)](./overview/roadmap-tr.md)
 * [Amica Life](./overview/amica-life.md)
 * [Emotion System](./overview/emotion-system.md)
 * [Other Features](./overview/other-features.md)
@@ -70,6 +72,7 @@
 ## 🌺 Contributing to Amica
 
 * [Setting up your developer environment](./contributing/setup-dev-env.md)
+* [Development Guidelines](./contributing/development-guidelines.md)
 * [Contributing to the Docs](./contributing/contributing-to-the-docs.md)
 * [Developing Amica](./contributing/developing-amica.md)
 * [Adding Translations](./contributing/adding-translations.md)
