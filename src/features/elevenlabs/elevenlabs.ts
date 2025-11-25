@@ -7,7 +7,7 @@ export async function elevenlabs(
   style: TalkStyle,
 ) {
   const apiKey = config("elevenlabs_apikey");
-  if (! apiKey) {
+  if (!apiKey) {
     throw new Error("Invalid ElevenLabs API Key");
   }
 
@@ -32,7 +32,7 @@ export async function elevenlabs(
       "xi-api-key": apiKey,
     },
   });
-  if (! elevenlabsRes.ok) {
+  if (!elevenlabsRes.ok) {
     throw new Error(`ElevenLabs API Error (${elevenlabsRes.status})`);
   }
   const data = (await elevenlabsRes.arrayBuffer()) as any;

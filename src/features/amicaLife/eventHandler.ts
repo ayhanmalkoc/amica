@@ -139,9 +139,8 @@ export async function handleSubconsciousEvent(
   const convo = chat.messageList;
   const convoLog = convo
     .map((message) => {
-      return `${message.role === "user" ? "User" : "Assistant"}: ${
-        message.content
-      }`;
+      return `${message.role === "user" ? "User" : "Assistant"}: ${message.content
+        }`;
     })
     .join("\n");
 
@@ -207,8 +206,8 @@ export async function handleSubconsciousEvent(
       } catch (error) {
         console.error("Error handling external API:", error);
       }
-    // External API Off or Isn't development case
-    } else { 
+      // External API Off or Isn't development case
+    } else {
       storedSubconcious.push(timestampedPrompt);
       let totalStorageTokens = storedSubconcious.reduce(
         (totalTokens, prompt) => totalTokens + prompt.prompt.length,
@@ -219,7 +218,7 @@ export async function handleSubconsciousEvent(
         totalStorageTokens -= removed!.prompt.length;
       }
     }
-    
+
     console.log("Stored subconcious prompts:", storedSubconcious);
     amicaLife.setSubconciousLogs!(storedSubconcious);
 
