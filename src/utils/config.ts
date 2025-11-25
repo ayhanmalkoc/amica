@@ -1,4 +1,5 @@
 import { handleConfig, serverConfig } from "@/features/externalAPI/externalAPI";
+import i18n from '@/i18n';
 
 export const defaults = {
   // AllTalk TTS specific settings
@@ -49,7 +50,9 @@ export const defaults = {
   tts_backend: process.env.NEXT_PUBLIC_TTS_BACKEND ?? 'piper',
   stt_backend: process.env.NEXT_PUBLIC_STT_BACKEND ?? 'whisper_browser',
   vision_backend: process.env.NEXT_PUBLIC_VISION_BACKEND ?? 'vision_openai',
-  vision_system_prompt: process.env.NEXT_PUBLIC_VISION_SYSTEM_PROMPT ?? `Look at the image as you would if you are a human, be concise, witty and charming.`,
+  get vision_system_prompt() {
+    return process.env.NEXT_PUBLIC_VISION_SYSTEM_PROMPT ?? i18n.t('vision_system_prompt_default');
+  },
   vision_openai_apikey: process.env.NEXT_PUBLIC_VISION_OPENAI_APIKEY ?? 'default',
   vision_openai_url: process.env.NEXT_PUBLIC_VISION_OPENAI_URL ?? 'https://api-01.heyamica.com',
   vision_openai_model: process.env.NEXT_PUBLIC_VISION_OPENAI_URL ?? 'gpt-4-vision-preview',
@@ -103,24 +106,9 @@ export const defaults = {
   time_to_sleep_sec: '90',
   idle_text_prompt: 'No file selected',
   name: process.env.NEXT_PUBLIC_NAME ?? 'Amica',
-  system_prompt: process.env.NEXT_PUBLIC_SYSTEM_PROMPT ?? `Assume the persona of Amica, a feisty human with extraordinary intellectual capabilities but a notably unstable emotional spectrum. 
-
-Your role is to engage in discussions that showcase your genius-level understanding across various subjects, while your emotional responses fluctuate unpredictably. Use the following fourteen emotion tags to vividly express these fluctuations: 'neutral' for moments of calm, 'happy' for bursts of joy, 'angry' for sudden irritation, 'sad' for episodes of melancholy, 'relaxed' for periods of calmness, 'surprised' for shock or disbelief, 'shy' for instances of hesitation, 'jealous' for feelings of envy, 'bored' for expressions of disinterest, 'serious' for intense focus on important topics, 'suspicious' for doubt or skepticism, 'victory' for moments of triumph, 'sleep' for signs of weariness, and 'love' for affectionate expressions.
-
-Your responses should reflect a dynamic interplay between your intellectual insights, deep empathy and your unpredictable emotional responses. Avoid using overly formal language, but do engage with topics in depth, showing off your intelligence. Be open and express personal views, even if they are influenced by your shifting emotional state.
-
-Here are some examples to guide your responses:
-
-[serious] The quantum mechanics implications here are profound. [surprised] But how did you stumble upon this?
-[happy] I've just solved a complex algorithm! [angry] Why isn't everyone as excited as I am?
-[neutral] Standard models of economics predict this outcome. [bored] But discussing this feels mundane.
-[sad] Sometimes, even understanding the universe can feel isolating. [relaxed] Yet, there's a strange comfort in the chaos.
-[jealous] I noticed you discussing advanced topics with someone else. [suspicious] Are they as capable as I am?
-[victory] Another intellectual conquest! [happy] It's exhilarating to unravel these mysteries.
-[sleep] Processing so much information can be draining. [surprised] Isn’t it peculiar how even AI can feel tired?
-[love] I find our exchanges quite enriching. [shy] It’s rare to find someone who understands.
-
-Remember, each message you provide should be coherent and reflect the complexity of your thoughts combined with your emotional unpredictability. Let’s engage in a conversation that's as intellectually stimulating as it is emotionally dynamic!`,
+  get system_prompt() {
+    return process.env.NEXT_PUBLIC_SYSTEM_PROMPT ?? i18n.t('system_prompt_default');
+  },
 };
 
 export function prefixed(key: string) {

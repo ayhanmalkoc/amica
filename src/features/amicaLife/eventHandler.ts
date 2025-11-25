@@ -13,6 +13,7 @@ import { Viewer } from "../vrmViewer/viewer";
 import { config } from "@/utils/config";
 import isDev from "@/utils/isDev";
 import { handleSubconscious } from "../externalAPI/externalAPI";
+import i18n from "@/i18n";
 
 export const idleEvents = [
   "VRMA",
@@ -21,17 +22,9 @@ export const idleEvents = [
 ] as const;
 
 export const basedPrompt = {
-  idleTextPrompt: [
-    "*I am ignoring you*",
-    "**sighs** It's so quiet here.",
-    "Tell me something interesting about yourself.",
-    "**looks around** What do you usually do for fun?",
-    "I could use a good distraction right now.",
-    "What's the most fascinating thing you know?",
-    "If you could talk about anything, what would it be?",
-    "Got any clever insights to share?",
-    "**leans in** Any fun stories to tell?",
-  ],
+  get idleTextPrompt() {
+    return i18n.t('amica_life.idle_prompts', { returnObjects: true }) as string[];
+  },
 };
 
 export type AmicaLifeEvents = {
@@ -147,7 +140,7 @@ export async function handleSubconsciousEvent(
   try {
     // Step 1: Simulate subconscious self mental diary
     const subconciousWordSalad = await askLLM(
-      "Please reflect on the conversation and let your thoughts flow freely, as if writing a personal diary with events that have occurred:",
+      i18n.t('amica_life.subconscious.step1'),
       `${convoLog}`,
       null,
     );
@@ -159,7 +152,7 @@ export async function handleSubconsciousEvent(
       ? convoLog
       : subconciousWordSalad;
     const decipherEmotion = await askLLM(
-      "Read this mini-diary, I would like you to simulate a human-like subconscious with deep emotions and describe it from a third-person perspective:",
+      i18n.t('amica_life.subconscious.step2'),
       secondStepPrompt,
       null,
     );
@@ -172,9 +165,9 @@ export async function handleSubconsciousEvent(
       ? convoLog
       : decipherEmotion;
     const emotionDecided = await askLLM(
-      `Based on your mini-diary, respond with dialougue that sounds like a normal person speaking about their mind, experience or feelings. Make sure to incorporate the specified emotion tags in your response. Here is the list of emotion tags that you have to include in the result : ${emotions
-        .map((emotion) => `[${emotion}]`)
-        .join(", ")}:`,
+      i18n.t('amica_life.subconscious.step3', {
+        emotions: emotions.map((emotion) => `[${emotion}]`).join(", ")
+      }),
       thirdStepPrompt,
       chat,
     );
@@ -187,7 +180,7 @@ export async function handleSubconsciousEvent(
       ? convoLog
       : subconciousWordSalad;
     const compressSubconcious = await askLLM(
-      "Compress this prompt to 240 characters:",
+      i18n.t('amica_life.subconscious.step4'),
       fourthStepPrompt,
       null,
     );
