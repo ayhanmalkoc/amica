@@ -222,7 +222,7 @@
     "subconscious": {
       "step1": "Please reflect on the conversation and let your thoughts flow freely, as if writing a personal diary with events that have occurred:",
       "step2": "Read this mini-diary, I would like you to simulate a human-like subconscious with deep emotions and describe it from a third-person perspective:",
-      "step3": "Based on your mini-diary, respond with dialougue that sounds like a normal person speaking about their mind, experience or feelings. Make sure to incorporate the specified emotion tags in your response. Here is the list of emotion tags that you have to include in the result : {{emotions}}:",
+      "step3": "Based on your mini-diary, respond with dialogue that sounds like a normal person speaking about their mind, experience or feelings. You MUST start your response with one of the following emotion tags: {{emotions}}. Example: '[happy] The weather is great today.'",
       "step4": "Compress this prompt to 240 characters:"
     }
   }

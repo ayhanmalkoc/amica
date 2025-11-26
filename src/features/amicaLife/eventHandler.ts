@@ -172,8 +172,23 @@ export async function handleSubconsciousEvent(
       chat,
     );
 
+    // Commit the generated message to history
+    chat.commitCurrentMessage();
+
     // Removed for staging logs.
     // console.log("Result from step 3: ", emotionDecided);
+
+    // Clean the emotion tag (e.g. "[happy]" -> "happy")
+    // We use regex to find the first occurrence of text inside square brackets
+    const emotionMatch = emotionDecided.match(/\[(.*?)\]/);
+    const cleanEmotion = emotionMatch ? emotionMatch[1].trim() : "";
+
+    // Apply the emotion to the model if valid
+    if (cleanEmotion && amicaLife.viewer?.model) {
+      console.log("Subconscious emotion applied:", cleanEmotion);
+      // The playEmotion method accepts a string and handles mapping internally or via the controller
+      amicaLife.viewer.model.playEmotion(cleanEmotion);
+    }
 
     // Step 4: Compress the subconscious diary entry to 240 characters
     const fourthStepPrompt = subconciousWordSalad.startsWith("Error:")

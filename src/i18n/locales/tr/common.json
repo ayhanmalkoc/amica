@@ -206,7 +206,7 @@
     "subconscious": {
       "step1": "Lütfen konuşmayı düşün ve sanki gerçekleşen olaylarla ilgili kişisel bir günlük yazıyormuşsun gibi düşüncelerinin serbestçe akmasına izin ver:",
       "step2": "Bu mini günlüğü oku, derin duygulara sahip insan benzeri bir bilinçaltını simüle etmeni ve bunu üçüncü şahıs bakış açısıyla tanımlamanı istiyorum:",
-      "step3": "Mini günlüğüne dayanarak, zihni, deneyimi veya duyguları hakkında konuşan normal bir insan gibi seslenen bir diyalogla yanıt ver. Yanıtına belirtilen duygu etiketlerini dahil ettiğinden emin ol. İşte sonuca dahil etmen gereken duygu etiketlerinin listesi : {{emotions}}:",
+      "step3": "Mini günlüğüne dayanarak, zihni, deneyimi veya duyguları hakkında konuşan normal bir insan gibi seslenen bir diyalogla yanıt ver. Yanıtına KESİNLİKLE şu duygu etiketlerinden biriyle BAŞLAMALISIN: {{emotions}}. Örnek: '[happy] Bugün hava çok güzel.'",
       "step4": "Bu istemi 240 karaktere sıkıştır:"
     }
   }

@@ -274,6 +274,16 @@ export class Chat {
     this.setThoughtMessage!(this.thoughtMessage);
   }
 
+  public commitCurrentMessage() {
+    if (this.currentAssistantMessage !== "") {
+      this.messageList!.push({
+        role: "assistant",
+        content: this.currentAssistantMessage,
+      });
+      this.currentAssistantMessage = "";
+    }
+  }
+
   public bubbleMessage(role: Role, text: string) {
     // TODO: currentUser & Assistant message should be contain the message with emotion in it
 
@@ -302,19 +312,7 @@ export class Chat {
     }
 
     if (role === "assistant") {
-      if (
-        this.currentAssistantMessage != "" &&
-        !this.isAwake() &&
-        config("amica_life_enabled") === "true"
-      ) {
-        this.messageList!.push({
-          role: "assistant",
-          content: this.currentAssistantMessage,
-        });
-
-        this.currentAssistantMessage = text;
-        this.setAssistantMessage!(this.currentAssistantMessage);
-      } else if (config("chatbot_backend") === "moshi") {
+      if (config("chatbot_backend") === "moshi") {
         if (this.currentAssistantMessage !== "") {
           this.messageList!.push({
             role: "assistant",
@@ -414,7 +412,7 @@ export class Chat {
   public initSSE() {
     if (!isDev || config("external_api_enabled") !== "true") {
       return;
-    }  
+    }
     // Close existing SSE connection if it exists
     this.closeSSE();
 
@@ -438,20 +436,20 @@ export class Chat {
             const messages: Message[] = [
               { role: "system", content: config("system_prompt") },
               ...this.messageList!,
-              { role: "user", content: data},
+              { role: "user", content: data },
             ];
             let stream = await getEchoChatResponseStream(messages);
             this.streams.push(stream);
             this.handleChatResponseStream();
             break;
-          
+
           case 'animation':
             console.log('Animation data received:', data);
             const animation = await loadVRMAnimation(`/animations/${data}`);
             if (!animation) {
               throw new Error("Loading animation failed");
             }
-            this.viewer?.model?.playAnimation(animation,data);
+            this.viewer?.model?.playAnimation(animation, data);
             requestAnimationFrame(() => { this.viewer?.resetCameraLerp(); });
             break;
 
@@ -481,7 +479,7 @@ export class Chat {
 
           case 'systemPrompt':
             console.log('System Prompt data received:', data);
-            updateConfig("system_prompt",data);
+            updateConfig("system_prompt", data);
             break;
 
           default:
@@ -507,11 +505,11 @@ export class Chat {
 
   public closeSSE() {
     if (this.eventSource) {
-        console.log("Closing existing SSE connection...");
-        this.eventSource.close();
-        this.eventSource = null;
+      console.log("Closing existing SSE connection...");
+      this.eventSource.close();
+      this.eventSource = null;
     }
-}
+  }
 
   public async makeAndHandleStream(messages: Message[]) {
     try {
@@ -594,11 +592,11 @@ export class Chat {
                 screenplay: aiTalks[0],
                 streamIdx: streamIdx,
               });
-            } 
+            }
 
             // thought bubble
             this.thoughtBubbleMessage(isThinking, aiTalks[0].text);
-            
+
             if (!firstSentenceEncountered) {
               console.timeEnd("performance_time_to_first_sentence");
               firstSentenceEncountered = true;
@@ -716,7 +714,7 @@ export class Chat {
 
     if (config("reasoning_engine_enabled") === "true") {
       return getReasoingEngineChatResponseStream(systemPrompt, conversationMessages)
-    } 
+    }
 
     switch (chatbotBackend) {
       case "arbius_llm":
